@@ -61,16 +61,18 @@ extension UIView {
     }
 
     func recursiveHideSkeleton(reloadDataAfter reload: Bool, transition: SkeletonTransitionStyle, root: UIView? = nil) {
-        guard sk.isSkeletonActive else { return }
         if isHiddenWhenSkeletonIsActive {
             isHidden = false
         }
-        _currentSkeletonConfig?.transition = transition
-        unSwizzleLayoutSubviews()
-        unSwizzleTraitCollectionDidChange()
-        removeDummyDataSourceIfNeeded(reloadAfter: reload)
+        
+        if sk.isSkeletonActive {
+            _currentSkeletonConfig?.transition = transition
+            unSwizzleLayoutSubviews()
+            unSwizzleTraitCollectionDidChange()
+            removeDummyDataSourceIfNeeded(reloadAfter: reload)
+        }
 
-        if sk.isSkeletonActive, _skeletonLayer != nil {
+        if isSkeletonable {
             recoverViewState(forced: false)
             removeSkeletonLayer()
         }
@@ -143,5 +145,28 @@ private extension UIView {
             _flowDelegate?.didUpdateSkeletons(rootView: root)
         }
     }
+    
+//    func recursiveUpdateSkeleton(skeletonConfig config: SkeletonConfig, root: UIView? = nil) {
+//        guard sk.isSkeletonActive else { return }
+//        _currentSkeletonConfig = config
+//        updateDummyDataSourceIfNeeded()
+//
+//        if let skeletonLayer = _skeletonLayer,
+//            skeletonLayer.type != config.type
+//        {
+//            removeSkeletonLayer()
+//            addSkeletonLayer(skeletonConfig: config)
+//        } else {
+//            updateSkeletonLayer(skeletonConfig: config)
+//        }
+//        
+//        subviews.forEach({
+//            $0.recursiveUpdateSkeleton(skeletonConfig: config)
+//        })
+//
+//        if let root = root {
+//            _flowDelegate?.didUpdateSkeletons(rootView: root)
+//        }
+//    }
     
 }
