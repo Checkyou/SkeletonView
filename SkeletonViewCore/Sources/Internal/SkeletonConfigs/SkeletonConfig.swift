@@ -3,7 +3,7 @@
 import UIKit
 
 /// Used to store all config needed to activate the skeleton layer.
-struct SkeletonConfig {
+public struct SkeletonConfig {
     /// Type of skeleton layer
     let type: SkeletonType
     
@@ -22,7 +22,7 @@ struct SkeletonConfig {
     ///  Transition style
     var transition: SkeletonTransitionStyle
     
-    init(type: SkeletonType,
+    public init(type: SkeletonType,
          colors: [UIColor],
          gradientDirection: GradientDirection? = nil,
          animated: Bool = false,
