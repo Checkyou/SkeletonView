@@ -61,8 +61,9 @@ extension UIView {
     }
 
     func recursiveHideSkeleton(reloadDataAfter reload: Bool, transition: SkeletonTransitionStyle, root: UIView? = nil) {
-        if isHiddenWhenSkeletonIsActive {
+        if isHiddenWhenSkeletonIsActive, let _hiddenBeforeSkeleton {
             isHidden = _hiddenBeforeSkeleton
+            self._hiddenBeforeSkeleton = nil
         }
         
         if sk.isSkeletonActive {
@@ -146,28 +147,5 @@ private extension UIView {
             _flowDelegate?.didUpdateSkeletons(rootView: root)
         }
     }
-    
-//    func recursiveUpdateSkeleton(skeletonConfig config: SkeletonConfig, root: UIView? = nil) {
-//        guard sk.isSkeletonActive else { return }
-//        _currentSkeletonConfig = config
-//        updateDummyDataSourceIfNeeded()
-//
-//        if let skeletonLayer = _skeletonLayer,
-//            skeletonLayer.type != config.type
-//        {
-//            removeSkeletonLayer()
-//            addSkeletonLayer(skeletonConfig: config)
-//        } else {
-//            updateSkeletonLayer(skeletonConfig: config)
-//        }
-//        
-//        subviews.forEach({
-//            $0.recursiveUpdateSkeleton(skeletonConfig: config)
-//        })
-//
-//        if let root = root {
-//            _flowDelegate?.didUpdateSkeletons(rootView: root)
-//        }
-//    }
-    
+
 }
