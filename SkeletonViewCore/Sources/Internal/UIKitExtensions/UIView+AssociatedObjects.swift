@@ -31,6 +31,7 @@ enum ViewAssociatedKeys {
     static var skeletonCornerRadius = "skeletonCornerRadius"
     static var disabledWhenSkeletonIsActive = "disabledWhenSkeletonIsActive"
     static var delayedShowSkeletonWorkItem = "delayedShowSkeletonWorkItem"
+    static var hiddenBeforeSkeleton = "hiddenBeforeSkeleton"
     
 }
 // codebeat:enable[TOO_MANY_IVARS]
@@ -90,5 +91,10 @@ extension UIView {
     var _skeletonableCornerRadius: Float {
         get { return ao_get(pkey: &ViewAssociatedKeys.skeletonCornerRadius) as? Float ?? SkeletonViewAppearance.shared.skeletonCornerRadius }
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.skeletonCornerRadius) }
+    }
+    
+    var _hiddenBeforeSkeleton: Bool {
+        get { return ao_get(pkey: &ViewAssociatedKeys.hiddenBeforeSkeleton) as? Bool ?? false }
+        set { ao_set(newValue, pkey: &ViewAssociatedKeys.hiddenBeforeSkeleton) }
     }
 }
