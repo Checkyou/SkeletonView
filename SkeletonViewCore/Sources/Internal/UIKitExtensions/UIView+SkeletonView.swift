@@ -62,7 +62,7 @@ extension UIView {
 
     func recursiveHideSkeleton(reloadDataAfter reload: Bool, transition: SkeletonTransitionStyle, root: UIView? = nil) {
         if isHiddenWhenSkeletonIsActive {
-            isHidden = false
+            isHidden = _hiddenBeforeSkeleton
         }
         
         if sk.isSkeletonActive {
@@ -101,6 +101,7 @@ private extension UIView {
     
     func recursiveShowSkeleton(skeletonConfig config: SkeletonConfig, root: UIView? = nil) {
             if isHiddenWhenSkeletonIsActive {
+                _hiddenBeforeSkeleton = isHidden
                 isHidden = true
             }
             guard !sk.isSkeletonActive else { return }
