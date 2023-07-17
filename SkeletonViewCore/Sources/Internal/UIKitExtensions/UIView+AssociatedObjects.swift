@@ -93,8 +93,8 @@ extension UIView {
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.skeletonCornerRadius) }
     }
     
-    var _hiddenBeforeSkeleton: Bool {
-        get { return ao_get(pkey: &ViewAssociatedKeys.hiddenBeforeSkeleton) as? Bool ?? false }
+    var _hiddenBeforeSkeleton: Bool? {
+        get { return ao_get(pkey: &ViewAssociatedKeys.hiddenBeforeSkeleton) as? Bool }
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.hiddenBeforeSkeleton) }
     }
 }
