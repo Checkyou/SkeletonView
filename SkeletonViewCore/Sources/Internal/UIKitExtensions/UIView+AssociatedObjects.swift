@@ -17,6 +17,7 @@ import UIKit
 enum ViewAssociatedKeys {
     
     static var skeletonable = "skeletonable"
+    static var skeletonIgnored = "skeletonIgnored"
     static var hiddenWhenSkeletonIsActive = "hiddenWhenSkeletonIsActive"
     static var status = "status"
     static var skeletonLayer = "layer"
@@ -76,6 +77,11 @@ extension UIView {
     var _skeletonable: Bool {
         get { return ao_get(pkey: &ViewAssociatedKeys.skeletonable) as? Bool ?? false }
         set { ao_set(newValue, pkey: &ViewAssociatedKeys.skeletonable) }
+    }
+    
+    var _skeletonIgnored: Bool {
+        get { return ao_get(pkey: &ViewAssociatedKeys.skeletonIgnored) as? Bool ?? false }
+        set { ao_set(newValue, pkey: &ViewAssociatedKeys.skeletonIgnored) }
     }
     
     var _hiddenWhenSkeletonIsActive: Bool {
