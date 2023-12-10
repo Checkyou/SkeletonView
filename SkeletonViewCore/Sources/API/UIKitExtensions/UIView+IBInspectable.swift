@@ -22,6 +22,12 @@ public extension UIView {
     }
     
     @IBInspectable
+    var isIgnoredWhenSkeltoned: Bool {
+        get { _skeletonIgnored }
+        set { _skeletonIgnored = newValue }
+    }
+    
+    @IBInspectable
     var isHiddenWhenSkeletonIsActive: Bool {
         get { _hiddenWhenSkeletonIsActive }
         set { _hiddenWhenSkeletonIsActive = newValue }
