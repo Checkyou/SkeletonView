@@ -117,7 +117,7 @@ private extension UIView {
             }
             
             if !self.isSkeletonable || self is CollectionSkeleton {
-                subviews.forEach({
+                subviews.filter({ !$0.isIgnoredWhenSkeltoned }).forEach({
                     $0.recursiveShowSkeleton(skeletonConfig: config)
                 })
             }
